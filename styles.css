@@ -6,6 +6,31 @@ body{
 	height: 100%; /* Ensures the page height doesn't exceed the viewport */
 }
 
+.fish-net {
+    position: absolute;
+    width: 100px; 
+    height: 100px; 
+    bottom: 10px; /* Adjust to position it near the water */
+    left: 1150px; /* Center relative to the boat */
+    transform-origin: top center; /* Pivot for tilting */
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 15; /* Ensure it's above the water */
+    animation: net-trail 6s ease-in-out infinite; /* Add trailing motion */
+}
+
+.fish-net-line {
+    position: absolute;
+    width: 3px; /* Thickness of the line */
+    height: 190px; /* Length of the line */
+    background-color: black; /* Line color */
+    bottom: 26px; /* Position to align with the net */
+	left: 1010px;
+    transform-origin: top; /* Rotate from the top */
+    transform: rotate(-53deg); /* Match net's tilt */
+    z-index: 16; /* Ensure it stays above the water */
+}
+
 .animation-wrapper{
 	background: #ace5ee;
 	bottom: 0;
@@ -83,16 +108,6 @@ body{
 	right: 0;
 }
 
-/* .boat{
-	animation: boat 2.5s linear infinite;
-    background-repeat: no-repeat;
-    bottom: 175px;
-    height: 430px;
-    left: 50%;
-	position: absolute;
-    width: 100%;
-} */
-
 .boat {
     animation: boat 2.5s linear infinite;
     /* background-image: url('your-image.jpg'); */
@@ -136,6 +151,14 @@ body{
 	width: 124px;
 	z-index: 9;
 }
+
+.caught {
+    opacity: 0.5; /* Dim caught trash */
+    transform: scale(0.5); /* Make it smaller */
+    animation: none; /* Stop any animation */
+    pointer-events: none; /* Prevent interaction */
+}
+
 
 .water ul.trash {
     list-style: none;
@@ -280,18 +303,17 @@ body{
     }
 }
 
-@keyframes boat{
-	0%{
-		transform: rotate(0);
-	}
 
-	50%{
-		transform: rotate(-3deg);
-	}
-
-	100%{
-		transform: rotate(0);
-	}
+@keyframes boat {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-5px) rotate(-3deg); /* Slight tilt */
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
 }
 
 @keyframes cloud{
@@ -374,5 +396,17 @@ body{
     100% {
         transform: translateY(0) rotate(0deg); /* Back to initial position */
         left: 110%; /* Off-screen right */
+    }
+}
+
+@keyframes net-trail {
+    0% {
+        transform: translateX(-50%) rotate(-60deg); /* Initial tilt */
+    }
+    50% {
+        transform: translateX(-48%) rotate(-70deg); /* Sway slightly */
+    }
+    100% {
+        transform: translateX(-50%) rotate(-60deg); /* Return to initial tilt */
     }
 }
