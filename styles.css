@@ -19,6 +19,11 @@ body{
     animation: net-trail 6s ease-in-out infinite; /* Add trailing motion */
 }
 
+.fish-net.full {
+    background-image: url('icons/fish-net-full.png'); /* Full net icon */
+}
+
+
 .fish-net-line {
     position: absolute;
     width: 3px; /* Thickness of the line */
@@ -153,10 +158,11 @@ body{
 }
 
 .caught {
-    opacity: 0.5; /* Dim caught trash */
-    transform: scale(0.5); /* Make it smaller */
-    animation: none; /* Stop any animation */
-    pointer-events: none; /* Prevent interaction */
+    opacity: 0;
+    transform: scale(0.5); /* Shrink */
+    animation: none; /* Stop animation */
+    pointer-events: none;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 
