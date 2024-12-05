@@ -17,11 +17,11 @@ body{
     background-repeat: no-repeat;
     z-index: 15; /* Ensure it's above the water */
     animation: net-trail 6s ease-in-out infinite; /* Add trailing motion */
+    opacity: 1; /* Start fully visible */
+    transition: opacity 2.5s ease; /* Smooth fade effect */
 }
 
-.fish-net.full {
-    background-image: url('icons/fish-net-full.png'); /* Full net icon */
-}
+
 
 
 .fish-net-line {
