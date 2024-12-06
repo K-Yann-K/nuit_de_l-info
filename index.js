@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 10000);
     setTimeout(() => {
         fishNet.style.backgroundImage = "url('icons/fish-net-full-completely.png')"; // Replace with the full net image
-    }, 16500); 
+    }, 14800); 
     function checkCollision() {
         const netRect = fishNet.getBoundingClientRect();
     

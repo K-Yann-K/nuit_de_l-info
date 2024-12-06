@@ -6,80 +6,6 @@ body{
 	height: 100%; /* Ensures the page height doesn't exceed the viewport */
 }
 
-.content {
-    position: relative;  
-    text-align: center;
-    color: white;
-    background: rgba(0, 0, 0, 0.4);
-    font-family: Arial, sans-serif;
-    z-index: 12;  
-    padding: 50px 20px;
-    margin: auto;
-    width: 700px;  /* Largeur du rectangle */
-    height: 200px;  
-  }
-  
-  
-  h1 {
-    font-size: 4rem;
-    text-transform: uppercase;
-    margin: 0;
-    letter-spacing: 5px;
-  }
-  
-  .overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); 
-    z-index: 11;
-  }
-
-  a{
-    background: linear-gradient(#8E86B5, #ACAEED);
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    display: inline-block;
-    border-radius: 50px 50px 50px 50px;
-    padding: 20px 30px;
-  }
-  
-  a:hover{
-    background: linear-gradient(#696484, #8788BA);
-
-  }
-
-.fish-net {
-    position: absolute;
-    width: 100px; 
-    height: 100px; 
-    bottom: 10px; /* Adjust to position it near the water */
-    left: 1150px; /* Center relative to the boat */
-    transform-origin: top center; /* Pivot for tilting */
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index: 15; /* Ensure it's above the water */
-    animation: net-trail 6s ease-in-out infinite; /* Add trailing motion */
-    opacity: 1; /* Start fully visible */
-    transition: opacity 2.5s ease; /* Smooth fade effect */
-}
-
-
-
-
-.fish-net-line {
-    position: absolute;
-    width: 3px; /* Thickness of the line */
-    height: 190px; /* Length of the line */
-    background-color: black; /* Line color */
-    bottom: 26px; /* Position to align with the net */
-	left: 1010px;
-    transform-origin: top; /* Rotate from the top */
-    transform: rotate(-53deg); /* Match net's tilt */
-    z-index: 16; /* Ensure it stays above the water */
-}
-
 .animation-wrapper{
 	background: #ace5ee;
 	bottom: 0;
@@ -103,7 +29,15 @@ body{
 }
 
 .water ul.waves li{
-	background-repeat: repeat-x;
+    position: absolute;
+    bottom: 60px;
+    width: 200%; /* Wave width */
+    height: 50%; /* Wave height */
+    background-repeat: repeat-x;
+    background-size: cover;
+    opacity: 0.7;
+    z-index: 5; /* Lower than the boat and net */
+    animation: wave-animation 10s linear infinite;
 }
 
 .water ul.waves li.wave-one{
@@ -157,19 +91,50 @@ body{
 	right: 0;
 }
 
-.boat {
-    animation: boat 2.5s linear infinite;
-    /* background-image: url('your-image.jpg'); */
-    background-repeat: no-repeat;
-    background-size: contain; /* Adjust as needed */
-    /* background-position: center; */
-    bottom: 145px;
-    height: 270px;
-    left: 50%;
+.boat-wrapper {
     position: absolute;
-    width: 300px;
+    bottom: 145px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px; /* Matches boat width */
+    height: 400px; /* Matches boat height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Aligns the net below the boat */
 }
 
+.boat {
+    width: 100%;
+    height: 270px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: boat 2.5s linear infinite;
+}
+
+.fish-net {
+    position: absolute;
+    width: 100px; 
+    height: 100px; 
+    bottom: -106px; /* Relative to boat-wrapper */
+    left: 105%; /* Centered under the boat */
+    transform: translateX(-50%) rotate(-60deg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: net-trail 6s ease-in-out infinite;
+    z-index: 20;
+}
+
+.fish-net-line {
+    position: absolute;
+    width: 3px; /* Thickness of the line */
+    height: 190px; /* Length of the line */
+    background-color: black; /* Line color */
+    bottom: -80px; /* Aligns with fish-net */
+    left: 70%; /* Centered under the boat */
+    transform: translateX(-50%) rotate(-53deg);
+    z-index: 19;
+}
 
 .cloud{
 	animation: cloud 30s linear infinite;
@@ -177,7 +142,8 @@ body{
     height: 165px;
     left: 0;
     position: absolute;
-    width: 297px
+    width: 297px;
+    bottom: 400px
 }
 
 .cloud2{
@@ -318,7 +284,7 @@ body{
 
 .water ul.trash .trash-item-3:nth-child(12) {
     left: 5%; /* Horizontal position */
-    bottom: 140px; /* Vertical position */
+    bottom: 100px; /* Vertical position */
     animation-duration: 20s;
 }
 
